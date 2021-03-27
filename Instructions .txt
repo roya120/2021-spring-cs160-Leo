@@ -1,0 +1,22 @@
+//Terminal
+
+1. npm init
+
+// installing dependencies and application server
+2. npm i express ejs
+
+//development dependencies
+3. npm i --save-dev nodemon dotenv
+
+4. create .env file in VSC, create .gitignore file(inside it-- 1. .env 2. nodes_module)
+
+5. goto package.json (inside-- line 7: delete that line and add "start": "nodemon server.js"
+
+6. create server.js in vsc file
+
+7. just to make sure: in terminal run  npm start 
+//i made the post 4000 so, we will using localhost:4000
+
+8. npm i bcrypt //hashed password feature
+
+9. npm i passport passport-local express-session express-flash //for password store

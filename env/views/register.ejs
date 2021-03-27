@@ -1,0 +1,34 @@
+<h1>Register</h1>
+
+<form action ="/register" method = POST>
+    <p>Please eneter the following information.</p>
+    <hr>
+
+    <label for="firstname"><b>First Name</b></label><br>
+    <input type="text" placeholder="Enter First Name" name="firstname" required> <br>
+
+    <label for="lastname"><b>Last Name</b></label><br>
+    <input type="text" placeholder="Enter Last Name" name="lastname" required> <br>
+
+    <label for="age"><b>Age</b></label><br>
+    <input type="text" placeholder="Enter Age" name="age" required> <br>
+
+
+    <label for="email"><b>Email</b></label><br>
+    <input type="text" placeholder="Enter Email" name="email" required> <br>
+
+    <label for="password"><b>Password</b></label><br>
+    <input type="password" placeholder="Enter Password" name="password" required> <br>
+
+    <label for="rpassword"><b>Repeat Password</b></label> <br>
+    <input type="password" placeholder="Repeat Password" name="rpassword" required> <br>
+
+    <label>
+      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+    </label>
+    <button type="submit" class="signupbtn">Sign Up</button> <br>
+
+        <button type="button" class="cancelbtn">Cancel</button>
+    
+</form>
+<a href="/login">Login</a>
