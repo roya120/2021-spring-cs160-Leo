@@ -6,6 +6,8 @@ import Home from './components/home'
 import Login from './components/login'
 import Register from './components/register'
 import Navigation from './components/navigation';
+import Library from './components/library';
+import Contact from './components/contact';
 
 
 
@@ -24,6 +26,8 @@ function App() {
               <Route exact path ="/" component ={Home}/>
               <Route exact path ="/login" component ={Login}/>
               <Route exact path ="/register" component ={Register}/>
+              <Route exact path ="/library" component ={Library}/>
+              <Route exact path ="/contact" component ={Contact}/>
           </Switch>
       
           </div>
