@@ -11,9 +11,10 @@ render() {
     return (
         <form action ="./login">
             <div class = "navigationBar">
-             <a class="active" href="library.html">Library</a>
+             <a class="active" href='/library'>Library</a>
+             <a  href='/'>Home</a>
              <a href="/register">Login/Signup</a>
-            <a href="contact.html">Contact Us</a>
+            <a href='/contact'>Contact Us</a>
             <a href="#about">About</a>
         </div>
             <div class="container">
