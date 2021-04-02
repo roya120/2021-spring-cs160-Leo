@@ -14,8 +14,10 @@ render() {
              <a class="active" href='/library'>Library</a>
              <a  href='/'>Home</a>
              <a href="/register">Login/Signup</a>
+             <a href='/booklist'>Books</a>
             <a href='/contact'>Contact Us</a>
             <a href="#about">About</a>
+            
         </div>
         <div class = "welcomeLibrary">
         <h1><b>Welcome to Bookey</b></h1>

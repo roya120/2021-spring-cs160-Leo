@@ -1,11 +1,14 @@
-import React, {Component} from 'react'
+import React from 'react'
 import {BrowserRouter, Route, Switch} from "react-router-dom"
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 import Home from './components/home'
 import Login from './components/login'
 import Register from './components/register'
-import Navigation from './components/navigation';
+import BookList from "./components/booklist"
+import Contact from "./components/contact"
+
+
 
 
 
@@ -24,8 +27,10 @@ function App() {
               <Route exact path ="/" component ={Home}/>
               <Route exact path ="/login" component ={Login}/>
               <Route exact path ="/register" component ={Register}/>
+              <Route exact path ="/contact" component ={Contact}/>
+              <Route exact path = "/booklist" component = {BookList}/>
+
           </Switch>
-      
           </div>
           
           </BrowserRouter>

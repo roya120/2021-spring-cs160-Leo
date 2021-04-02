@@ -36,3 +36,18 @@
     transform: rotate(360deg);
   }
 }
+
+.genreList {
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+#searchForm {
+  /* height: 45px;
+  width: 300px; */
+  position: relative;
+    display:flex;
+    min-width: 100px;
+
+}
+
