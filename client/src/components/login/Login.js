@@ -5,18 +5,7 @@ import axios from 'axios'
 import {showErrMsg, showSuccessMsg} from '../notifications/Notification'
 import { GoogleLogin } from 'react-google-login';
 
-const responseGoogle = (response) => {
-    console.log(response)
-    // try {
-    //     const res = await axios.post('http://localhost:5000/user/google_login', {tokenId: response.tokenId})
-    //     setUser({...user, error:'', success: res.data.msg})
-    //     localStorage.setItem('firstLogin', true)
-    // } 
-    // catch (err){
-    //     err.response.data.msg && 
-    //     setUser({...user, err: err.response.data.msg, success: ''})
-    // }
-}
+
 
 const initialState = {
     email: '',
@@ -51,6 +40,19 @@ function Login() {
 
         }
 
+    }
+    const responseGoogle = async (response) => {
+        try {
+            const res = await axios.post('http://localhost:5000/user/google_login', {tokenId: response.tokenId})
+
+            setUser({...user, error:'', success: res.data.msg})
+            localStorage.setItem('firstLogin', true)
+
+           
+        } catch (err) {
+            err.response.data.msg && 
+            setUser({...user, err: err.response.data.msg, success: ''})
+        }
     }
     return (
         <div >
@@ -97,10 +99,10 @@ function Login() {
 
             <div>
             <GoogleLogin
-                    clientId="704421274869-3r0hcg6p5jinna6bg070ol713c18dvlh.apps.googleusercontent.com"
+                    clientId="1018153860225-sun45c22catdsclgtl9uo0bmid7267a0.apps.googleusercontent.com"
                     buttonText="Login with Google"
                     onSuccess={responseGoogle}
-                    onFailure={responseGoogle}
+                    
                     cookiePolicy={'single_host_origin'}
             />
 
