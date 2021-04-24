@@ -16,7 +16,7 @@ function Home() {
          <a class="active" href='/booklist'>Library</a>
          <a href="/login">Login/Signup</a>
         <a href='/contact'>Contact Us</a>
-        <a href="/about">About</a>
+        <a href="/fiction">About</a>
         </div>
         <h1 align = "middle"><b>Welcome to Bookey</b></h1>
         <div class = "welcomeLibrary">
@@ -33,6 +33,7 @@ function Home() {
             <div class = "event-row">
                 <img src = {bookclub} alt = "event"></img> 
                 <h3>Book Club</h3>
+                <a href="club" class="myButton">view our club</a>
                 <p>Here you can sign up for any book club you are intersted in.</p>
 
             </div>

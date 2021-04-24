@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import './login.css'
+
 import {showErrMsg, showSuccessMsg} from '../notifications/Notification'
 import { GoogleLogin } from 'react-google-login';
 
@@ -53,7 +53,7 @@ function Login() {
 
     }
     return (
-        <div>
+        <div >
            
             <form onSubmit={handleSubmit}>
             <div class = "navigationBar">
@@ -63,27 +63,37 @@ function Login() {
         <a href='/contact'>Contact Us</a>
         <a href="/about">About</a>
         </div>
+        <div class = "logInCenter">
         <h1>Login Page</h1>
         {err && showErrMsg(err)}
             {success && showSuccessMsg(success)}
+            
                 <div class="container">
                     <label htmlFor="email">Email Address</label>
+                    <br></br>
                     <input type="text" placeholder="Enter email address" id="email"
                     value={email} name="email" onChange={handleChangeInput} />
-                </div>
+              
 
                 <div>
+                
                     <label htmlFor="password">Password</label>
+                    <br></br>
                     <input type="password" placeholder="Enter password" id="password"
                     value={password} name="password" onChange={handleChangeInput} />
+                
                 </div>
+                
                 <button type="submit" class="registerbtn">Login</button>
                 <p>Don't have an account? Join us!<a href="/register">Sign Up</a>.</p>
 
-               
+               </div>
+               </div>
             </form>
-
-            <div> Or Login with </div>
+            
+            <div class = "logInCenter2">
+             <p>Or Login with </p>
+            
 
             <div>
             <GoogleLogin
@@ -95,7 +105,15 @@ function Login() {
             />
 
             </div>
-                
+            </div>
+            
+        
+            
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
+                <br></br>
             
             
 
@@ -106,11 +124,4 @@ function Login() {
 
     
 }
-
-
-
-
-
-
-
 export default Login

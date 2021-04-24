@@ -1,7 +1,6 @@
 const nodemailer = require('nodemailer')
-const {google} = require('googleapis');
-const { gmail } = require('googleapis/build/src/apis/gmail');
-const OAuth2= google.auth.OAuth2;
+const {google} = require('googleapis')
+const {OAuth2} = google.auth;
 const OAUTH_PLAYGROUND = 'https://developers.google.com/oauthplayground'
 
 const {
@@ -33,40 +32,28 @@ const sendEmail = (to, url, txt) => {
             clientId: MAILING_SERVICE_CLIENT_ID,
             clientSecret: MAILING_SERVICE_CLIENT_SECRET,
             refreshToken: MAILING_SERVICE_REFRESH_TOKEN,
-             accessToken
+            accessToken
         }
     })
 
-const mailOptions = {
-    from: 'arrennbaral@gmail.com',
-    to: to,
-    subject: "Acount Verfication ",
-    html: `
-        <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
-        <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to the DevAT channel.</h2>
-        <p>
-            Click the button below to validate your email address.
-        </p>
+    const mailOptions = {
+        from: SENDER_EMAIL_ADDRESS,
+        to: to,
+        subject: "Bookey",
+        html: `
+            <div style="max-width: 700px; margin:auto; border: 10px solid #ddd; padding: 50px 20px; font-size: 110%;">
+            <h2 style="text-align: center; text-transform: uppercase;color: teal;">Welcome to Bookey</h2>
+            <p>Please click on the link below to activate
         
-        <a href=${url} style="background: crimson; text-decoration: none; color: white; padding: 10px 20px; margin: 10px 0; display: inline-block;">${txt}</a>
-    
-        <p>Click the link below if the button doesn't work. Thank you</p>
-    
-        <div>${url}</div>
-        </div>
-    `
-}
-smtpTransport.sendMail(mailOptions, (err, infor) => {
-    if(err) return err;
-    return infor
-})
+            <div>${url}</div>
+            </div>
+        `
+    }
+
+    smtpTransport.sendMail(mailOptions, (err, infor) => {
+        if(err) return err;
+        return infor
+    })
 }
 
 module.exports = sendEmail
-
-
-
-
-
-
-
