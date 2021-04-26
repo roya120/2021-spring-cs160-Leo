@@ -8,6 +8,23 @@ function AddBook(){
 
 return(
 <div>
+
+<div class="navigationBar20">
+   
+   <a href="/">Library</a>
+   <a href="user.html">User Account</a>
+   <a href="/contact">Contact Us</a>
+   <a href="#">Volunteer</a>
+   <a href="/">Logout</a>
+ </div>
+ <div class ="information">
+   <p>Thank you for sharing your book!</p>
+   <p>Please fill out the following form to add your book to our listing.</p>
+   <p>If you need help filling out this form please <a href="/contact">Contact Us.</a></p>
+ </div>
+
+
+
 <div class="container">
 <form> 
 <label for="BookeTitle">Book Title</label>
@@ -47,6 +64,8 @@ return(
 
     </div>
 
+
+    <br></br>
 
 
 </div>

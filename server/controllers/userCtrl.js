@@ -26,6 +26,9 @@ const userCtrl = {
             const user = await Users.findOne({email})
             if(user) return res.status(400).json({msg: "This email already exists."})
 
+            const googleUser = await googleUsers.findOne({email})
+            if(googleUser) return res.status(400).json({msg: "This email already exists."})
+
             if(password.length < 6)
                 return res.status(400).json({msg: "Password must be at least 6 characters."})
 
@@ -118,7 +121,6 @@ const userCtrl = {
             if(user){
 
             
-
                 const isMatch = await bcrypt.compare(password, user.password)
                 if(!isMatch) return res.status(400).json({msg: "Password is incorrect."})
 

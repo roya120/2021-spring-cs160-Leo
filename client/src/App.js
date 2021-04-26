@@ -16,6 +16,10 @@ import TextBook from './components/textBook/TextBook';
 import Adults from './components/adults/Adults';
 import Register from './components/register/Register'
 import ActivationEmail from './components/auth/ActivationEmail'
+import Account from './components/account/Account';
+import Volunteer from './components/volunteer/Volunteer';
+
+
 
 function App() {
   return (
@@ -47,6 +51,8 @@ function App() {
               <Route exact path ="/textBook" component ={TextBook}/>
               <Route exact path ="/adults" component ={Adults}/>
               <Route exact path = "/booklist" component = {BookList}/>
+              <Route exact path ="/account" component ={Account}/>
+              <Route exact path ="/volunteer" component ={Volunteer}/>
           </Switch>
           </div>
           

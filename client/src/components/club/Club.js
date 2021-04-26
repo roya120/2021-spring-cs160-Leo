@@ -17,17 +17,16 @@ return(
     <a  href='/'>Home</a>
     
 
-    <a href="/booklist">Library</a>
+    <a href="/home">catalog</a>
       
 
     <a href="/login">User Account</a>
-    <a href="contact.html">Contact Us</a>
+    <a href="/contact">Contact Us</a>
     <a href="#">Volunteer</a>
     
   </div>
-  <h1 align ="center">Book Club</h1><br/>
+
   <div class="image-div11">
-   
       <img class ="image11" src={club2}/>
   </div>
 
@@ -43,16 +42,15 @@ return(
 
   </div>
 
-  
+
   <div class="container11">
-    
   <form >
     <div class="row0">
       <div class="col-250">
         <label for="fname">First Name</label>
       </div>
       <div class="col-750">
-        <input type="text" id="fname" name="firstname" placeholder="First name"/>
+        <input type="text" id="fname" name="firstname" placeholder="Your name.."/>
       </div>
     </div>
     <div class="row0">
@@ -60,7 +58,7 @@ return(
         <label for="lname">Last Name</label>
       </div>
       <div class="col-750">
-        <input type="text" id="lname" name="lastname" placeholder="Last name"/>
+        <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
       </div>
 
 
@@ -69,7 +67,7 @@ return(
         <label for="Email">Email</label>
       </div>
       <div class="col-750">
-        <input type="text" id="email" name="Email" placeholder="Email"/>
+        <input type="text" id="email" name="Email" placeholder="Your email.."/>
       </div>
       </div>
 

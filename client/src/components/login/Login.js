@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory} from 'react-router-dom'
 import axios from 'axios'
 
 import {showErrMsg, showSuccessMsg} from '../notifications/Notification'
 import { GoogleLogin } from 'react-google-login';
+import {dispatchLogin} from '../../redux/actions/authAction'
+import {useDispatch} from 'react-redux'
 
 
 
@@ -17,7 +19,8 @@ const initialState = {
 function Login() {
 
     const [user, setUser] = useState(initialState)
-
+    const dispatch = useDispatch()
+    const history = useHistory()
     const {email, password, err, success} = user
 
 
@@ -31,6 +34,10 @@ function Login() {
         try {
             const res = await axios.post('http://localhost:5000/user/login', {email, password})
             setUser({...user, err: '', success: res.data.msg})
+
+            localStorage.setItem('firstLogin', true)
+            dispatch(dispatchLogin())
+            history.push("/loggedIn")
 
         }
         catch(err)

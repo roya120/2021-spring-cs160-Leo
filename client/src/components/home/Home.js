@@ -16,7 +16,7 @@ function Home() {
          <a class="active" href='/booklist'>Library</a>
          <a href="/login">Login/Signup</a>
         <a href='/contact'>Contact Us</a>
-        <a href="/fiction">About</a>
+        <a href="/about">About</a>
         </div>
         <h1 align = "middle"><b>Welcome to Bookey</b></h1>
         <div class = "welcomeLibrary">

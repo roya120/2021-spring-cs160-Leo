@@ -10,7 +10,7 @@ function Contact() {
         <form action ="mailto:info@roya.torshizi@gmail.com" method = "POST" encType ="text/plain"> 
         <div class = "navigationBarr">
         <a  href='/'>Home</a>
-         <a class="active" href='/booklist'>Library</a>
+         <a  href='/booklist'>Library</a>
          <a href="/login">Login/Signup</a>
         <a href='/contact'>Contact Us</a>
         <a href="/about">About</a>
