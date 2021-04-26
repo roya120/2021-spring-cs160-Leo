@@ -1,4 +1,5 @@
 const Users = require('../models/userModel')
+const Books = require('../models/newBookModel')
 const googleUsers = require('../models/googleUserModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
@@ -101,6 +102,7 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+
     googleLogin: async (req, res) => {
 
         try {
@@ -153,6 +155,31 @@ const userCtrl = {
             
         }
         catch(err){
+            return res.status(500).json({msg: err.message})
+        }
+    },
+
+    addBook: async (req,res) => {
+        try {
+            const {title, author, category, note} =req.body
+
+            //empty field check
+            if(!title || !author || !category )
+                return res.status(400).json({msg: "Please fill in all fields."})
+
+            //book info
+            const newBook = new Books({
+                title,author, category, note
+            })
+
+             await newBook.save()
+          
+
+            //console check
+             console.log(newBook)
+            
+        }
+        catch(err) {
             return res.status(500).json({msg: err.message})
         }
     }
