@@ -1,20 +1,22 @@
-import React, {Component} from 'react'
-
+import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
+import axios from 'axios'
+import './contact.css'
 
 function Contact() {
 
 
     return (
         <form action ="mailto:info@roya.torshizi@gmail.com" method = "POST" encType ="text/plain"> 
-        <div class = "navigationBar">
+        <div class = "navigationBarr">
         <a  href='/'>Home</a>
-         <a class="active" href='/booklist'>Library</a>
+         <a  href='/booklist'>Library</a>
          <a href="/login">Login/Signup</a>
         <a href='/contact'>Contact Us</a>
         <a href="/about">About</a>
         </div>
-            <div>
-                <h3>Contact Us</h3>
+            <div class="contactUs">
+                <h3 class="h3Class">Contact Us</h3>
                 <div>
                 {/* <label> Name: </label>
                 <input type="text" name="yourName" value=""/><br/> */}

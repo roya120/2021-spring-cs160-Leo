@@ -1,4 +1,7 @@
+
+  
 const mongoose = require('mongoose')
+
 
 const userSchema = new mongoose.Schema({
     firstname: {
@@ -20,9 +23,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Please enter your password!"]
-    },
-    
-    
+    }
 }, {
     timestamps: true
 })

@@ -11,31 +11,28 @@ function Club(){
 return(
 <div> 
 
+  
+    <div class="navigationBar11">
+    
+    <a  href='/'>Home</a>
+    
 
-<div class="navigationBar20">
-    <div class="dropdown20">
-    <a class="active" href="library.html">Library</a>
-    <div class="dropdown-content20">
+    <a href="/home">catalog</a>
+      
 
-    <a href="library.html">catalog</a>
-      <a href="#">bookclub</a>
-      <a href="#">About</a>
-    </div>
-    </div>
-
-    <a href="user.html">User Account</a>
-    <a href="contact.html">Contact Us</a>
+    <a href="/login">User Account</a>
+    <a href="/contact">Contact Us</a>
     <a href="#">Volunteer</a>
-    <a class="logout2" href="index.html">Logout</a>
+    
   </div>
 
-  <div class="image-div20">
-      <img class ="image20" src={club2}/>
+  <div class="image-div11">
+      <img class ="image11" src={club2}/>
   </div>
 
-  <div class = "text20">
+  <div class = "text">
 
-    <div class = "paragraph20">
+    <div class = "paragraph">
 
     <p> Here you can join the bookclubs available</p>
     <br></br>
@@ -46,7 +43,7 @@ return(
   </div>
 
 
-  <div class="container20">
+  <div class="container11">
   <form >
     <div class="row0">
       <div class="col-250">
@@ -63,6 +60,18 @@ return(
       <div class="col-750">
         <input type="text" id="lname" name="lastname" placeholder="Your last name.."/>
       </div>
+
+
+      <div class="row0">
+      <div class="col-250">
+        <label for="Email">Email</label>
+      </div>
+      <div class="col-750">
+        <input type="text" id="email" name="Email" placeholder="Your email.."/>
+      </div>
+      </div>
+
+
     </div>
     <div class="row0">
       <div class="col-250">

@@ -15,9 +15,9 @@ body {
 
 /* Full-width input fields */
 input[type=text], input[type=password] {
-  width: 10%;
-  padding: 10px;
-  margin: 5px 0px 22px 22px;
+  width: 30%;
+  padding: 12px;
+  margin: 0px 0px 22px 22px;
   display: inline-block;
   border: none;
   background: #f1f1f1;
@@ -25,6 +25,7 @@ input[type=text], input[type=password] {
 
 input[type=text]:focus, input[type=password]:focus {
   background-color: #ddd;
+  
  
   outline: none;
 }
@@ -59,7 +60,7 @@ a {
 /* Set a grey background color and center the text of the "sign in" section */
 .signin {
   background-color: #f1f1f1;
-  text-align: left;
+  text-align: center;
 }
 .topnav {
   background-color: #333;
@@ -113,9 +114,44 @@ a {
 
 /* Add a color to the active/current link */
 .navigationBar a.active {
-  background-color: #4CAF50;
+  
   color: white;
 }
 
+.event-row{
+  width: 50%;
+  margin: 100px auto 100px auto;
+  text-align: left;
+
+}
+
+.logInCenter{
+  display: block;
+margin-top: 0%;
+margin-left: 40%;
 
 
+width: 40%;
+
+}
+
+.logInCenter2{
+
+
+  display: block;
+margin-top: 0%;
+margin-left: 40%;
+
+
+width: 40%;
+}
+
+.RegisterCenter{
+  display: block;
+margin-top: 0%;
+margin-left: 40%;
+
+
+width: 40%;
+
+}

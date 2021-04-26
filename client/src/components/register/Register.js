@@ -58,6 +58,7 @@ function Register() {
         if(isLength(password))
                 return setUser({...user, err: "Password must be at least 6 characters.", success: ''})
         try{
+            
             const res = await axios.post('http://localhost:5000/user/register', {
                 firstname, lastname, email, password
             })
@@ -72,15 +73,6 @@ function Register() {
 
         }
     }
-
-    // /////////////
-    //  const showErrMsg = (msg) => {
-    //      <div className="errMsg">{msg}</div>
-    // }
-    // ///
-    // const showSuccessMsg = (msg) => {
-    //      <div className="successMsg">{msg}</div>
-    // }
 
     
 
@@ -99,7 +91,7 @@ function Register() {
     </div>
     
     <form action ='/login' onSubmit={handleSubmit}>
-        <div class="container">
+        <div class="RegisterCenter">
 <h1>Register</h1>
 {err && showErrMsg(err)}
     {success && showSuccessMsg(success)}

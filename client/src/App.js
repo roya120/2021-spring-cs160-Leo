@@ -15,6 +15,11 @@ import History from './components/history/History';
 import TextBook from './components/textBook/TextBook';
 import Adults from './components/adults/Adults';
 import Register from './components/register/Register'
+import ActivationEmail from './components/auth/ActivationEmail'
+import Account from './components/account/Account';
+import Volunteer from './components/volunteer/Volunteer';
+
+
 
 function App() {
   return (
@@ -31,6 +36,9 @@ function App() {
               <Route exact path ="/" component ={Home}/>   
               <Route exact path ="/login" component ={Login}/>     
               <Route exact path ="/register" component ={Register}/>   
+
+              <Route exact path="/user/activate/:activation_token" component={ActivationEmail}  />
+              
               <Route exact path ="/contact" component ={Contact}/>  
               <Route exact path ="/loggedIn" component ={LoggedIn}/> 
               <Route exact path ="/addBook" component ={AddBook}/>
@@ -43,6 +51,8 @@ function App() {
               <Route exact path ="/textBook" component ={TextBook}/>
               <Route exact path ="/adults" component ={Adults}/>
               <Route exact path = "/booklist" component = {BookList}/>
+              <Route exact path ="/account" component ={Account}/>
+              <Route exact path ="/volunteer" component ={Volunteer}/>
           </Switch>
           </div>
           
