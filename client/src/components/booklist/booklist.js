@@ -8,7 +8,6 @@ import history from '../images/history.png'
 import textbook from '../images/textbook.png'
 
 function BookList() {
-    //render(){
     return (
         <div>
             <div class = "navigationBar">
@@ -24,9 +23,6 @@ function BookList() {
                  </form>
             
         <div className="genreList">
-            
-                
-                 
 
                 <Genre className="Fiction" imgSrc={fiction} genreName="Fiction" genreDetails="Fictional stories" itemsLink=""></Genre>
                 
@@ -44,7 +40,6 @@ function BookList() {
 
         </div>
     );
-    // }
 
 }
 export default BookList;

@@ -9,6 +9,4 @@ router.post('/login', userCtrl.login)
 router.post('/google_login', userCtrl.login)
 
 
-
-
 module.exports = router

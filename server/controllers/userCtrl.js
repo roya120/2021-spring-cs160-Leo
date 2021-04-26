@@ -1,4 +1,5 @@
 const Users = require('../models/userModel')
+const Books = require('../models/bookModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 //const sendMail = require('./sendMail')
@@ -78,7 +79,11 @@ const userCtrl = {
             const isMatch = await bcrypt.compare(password, user.password)
             if(!isMatch) return res.status(400).json({msg: "Incorrect email/password. Please try again."})
 
+
             res.json({msg: "Login success!"})
+            
+    
+            
 
         }
 
@@ -86,6 +91,7 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+
     googleLogin: async (req, res) => {
 
         try {
@@ -93,6 +99,34 @@ const userCtrl = {
         }
         catch(err){
 
+        }
+    },
+
+    addBook: async (req,res) => {
+        try {
+            const {title, author, category, note} =req.body
+            //postman POST TEST
+
+            //empty field check
+            if(!title && !author )
+                return res.status(400).json({msg: "Please fill in all fields."})
+
+            
+
+            //book info
+            const newBook = new Books({
+                title,author, category, note
+            })
+
+             newBook.save()
+          
+
+            //postman console check
+             console.log(newBook)
+            
+        }
+        catch {
+            return res.status(500).json("SOME ERROR")
         }
     }
 
