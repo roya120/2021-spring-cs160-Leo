@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "85949830-db18-46aa-98db-a2fc53bc07df",
+		"name": "addBook",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/book/addBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"test\",\n    \"category\": \"fiction\",\n    \"note\": \"test\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/book/addBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"addBook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

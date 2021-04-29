@@ -39,7 +39,7 @@ function AddBook(){
             })
 
             setBook({...book, err: '', success: res.data.msg})
-            
+            console.log("Book successfully added.")
         }
         catch(err){
           console.log(err)

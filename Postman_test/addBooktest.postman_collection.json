@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "0ddf9b69-80fd-4e04-9b8a-6ff9a70fcb70",
+		"name": "addBooktest",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/book/addBook",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\" : \"test 3\",\n    \"author\" : \"test 4\",\n    \"category\": \"nonfiction\",\n    \"note\": \"test 4\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/book/addBook",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"book",
+						"addBook"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
