@@ -1,8 +1,9 @@
 Description:
 	
-	This section contains set of UI for porject Booke using Selenium. More about Selenium at: https://www.selenium.dev/
+	This section contains set of UI test for porject Bookey using Selenium. More about Selenium at: https://www.selenium.dev/
 
 Getting Started:
+
 	A.Dependencies:
 		1. pytest (v >= 6.2.3)
 		2. Selenium Python Client 
