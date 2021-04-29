@@ -6,10 +6,21 @@ import history from '../images/history.png'
 import catalog from '../images/catalog.png'
 import bookclub from '../images/book-club.png'
 
-
-
-
 function LoggedIn() {
+
+  
+  const handleLogout = async () => {
+    try {
+        await axios.get('http://localhost:5000//user/logout')
+        localStorage.removeItem('firstLogin')
+        window.location.href = "/";
+    } catch (err) {
+        window.location.href = "/";
+    }
+  }
+  
+
+
     return (
         <div class="loggedInClass">
      <div class="navigationBar20">
@@ -20,7 +31,7 @@ function LoggedIn() {
     <a href="/account">User Account</a>
     <a href="/contact">Contact Us</a>
     <a href="/volunteer">Volunteer</a>
-    <a href="/">Logout</a>
+    <a href="/" onClick={handleLogout} >Logout</a>
   </div>
     
   <div class="top-container20">
