@@ -115,3 +115,8 @@ font-family: Arial, Helvetica, Arial, sans-serif;
   color: black;
 }
 
+.LogoutLeft{
+  position: absolute;
+  right:2%;
+
+}

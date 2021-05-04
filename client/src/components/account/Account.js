@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './account.css'
@@ -10,16 +10,25 @@ import bookclub from '../images/book-club.png'
 
 
 function Account(){
+    const handleLogout = async () => {
+        try {
+            await axios.get('http://localhost:5000//user/logout')
+            localStorage.removeItem('firstLogin')
+            window.location.href = "/";
+        } catch (err) {
+            window.location.href = "/";
+        }
+      }
     return(
 <div>
 
 <div class="navigationBar20">
    
-   <a href="/">Library</a>
-   <a href="">User Account</a>
-   <a href="/contact">Contact Us</a>
-   <a href="/volunteer">Volunteer</a>
-   <a href="/">Logout</a>
+    <a href="/loggedIn">Home</a>
+   <a href="/loggedBooklist">Library</a>
+  
+   
+   <a class= "LogoutLeft" href="/" onClick={handleLogout} >LogOut</a>
  </div>
  <div class = "events">
         <div class="event-row">

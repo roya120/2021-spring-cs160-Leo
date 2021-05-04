@@ -53,9 +53,13 @@ body {
      
     top: 19%;
     width: 25%;
-
-    
-    
+ 
   }
+ 
   
+  .LogoutLeft{
+    position: absolute;
+    right:2%;
+  
+  }
   

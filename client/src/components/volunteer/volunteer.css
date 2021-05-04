@@ -35,3 +35,10 @@
     left: 30px;
     padding: 16px;
   }
+
+
+.LogoutLeft{
+  position: absolute;
+  right:2%;
+
+}

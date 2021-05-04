@@ -4,7 +4,7 @@ import axios from 'axios'
 import './abouUS.css'
 import aboutImage from '../images/aboutImage.png'
 
-function About() {
+function loggedAboutUs() {
 
 
     return (
@@ -12,12 +12,10 @@ function About() {
         <div class = "navigationBar">
         <a  href='/'>Home</a>
          <a class="active" href='/booklist'>Library</a>
-         <a href="/login">Login/Signup</a>
-        <a href='/contact'>Contact Us</a>
-        <a href="/about">About</a>
-       
-        
-        
+        <a href="/account">User Account</a>
+         <a href="/volunteer">Volunteer</a>
+         <a class= "LogoutLeft" href="/">LogOut</a>
+   
         </div>
             <div>
                 <div class="aboutContainer">
@@ -60,4 +58,4 @@ function About() {
         </form>
     )
 }
-export default About;
+export default loggedAboutUs;

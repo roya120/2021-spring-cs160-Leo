@@ -3,10 +3,20 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import './club.css'
 import club2 from '../images/club2.png'
+import loggedAboutUs from '../about/loggedAboutUs'
 
 
 
-function Club(){
+function loggedClub(){
+  const handleLogout = async () => {
+    try {
+        await axios.get('http://localhost:5000//user/logout')
+        localStorage.removeItem('firstLogin')
+        window.location.href = "/";
+    } catch (err) {
+        window.location.href = "/";
+    }
+  }
 
 return(
 <div> 
@@ -18,11 +28,9 @@ return(
     
 
     <a href="/home">Catalog</a>
-      
-
-    <a href="/login">User Account</a>
     <a href="/contact">Contact Us</a>
-    <a href="#">Volunteer</a>
+    <a href="/volunteer">Volunteer</a>
+    <a class= "LogoutLeft" href="/" onClick={handleLogout} >LogOut</a>
     
   </div>
 
@@ -165,4 +173,4 @@ return(
 
 }
 
-export default Club
+export default loggedClub;
