@@ -19,7 +19,8 @@ app.use(fileUpload({
 // })
 //Routes
 app.use('/user',require('./routes/userRouter'))
-app.use('/book',require('./routes/bookRouter'))
+//app.use('/book',require('./routes/bookRouter'))
+app.use('/book', require('./routes/advancedBookRouter'))
 
 //mongodb connection
 const CONNECTION_URL = process.env.MONGODB_URL

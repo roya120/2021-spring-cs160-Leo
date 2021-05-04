@@ -6,7 +6,7 @@ import Contact from './components/contact/contact';
 import Home from './components/home/Home';
 import Login from './components/login/Login';
 import LoggedIn from './components/loggedIn/LoggedIn';
-import AddBook from './components/addBook/addBook';
+import AddBook from './components/addBook/AddBook';
 import Club from './components/club/Club';
 import Fiction from './components/fiction/Fiction';
 import Nonfiction from './components/nonfiction/Nonfiction';
