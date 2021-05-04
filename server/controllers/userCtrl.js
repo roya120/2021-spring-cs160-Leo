@@ -177,6 +177,7 @@ const userCtrl = {
 
             //console check
              console.log(newBook)
+			 return res.status(200).json({msg: "Successful"})
             
         }
         catch(err) {

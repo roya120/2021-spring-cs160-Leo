@@ -14,9 +14,7 @@ const BookCtrlExport = {
 				return res.status(400).json({msg: "User ID and book ID required!"});
 				
 			// find the book
-			let thisBook = await BookInfo.findOne({
-				_id: bookid
-			}).then(() => {})
+			let thisBook = await BookInfo.findById(mongoose.Types.ObjectId(bookid))
 			.catch((err) => {
 				console.error(err);
 				return res.status(404).json({msg: "Unable to find book!"});
@@ -24,8 +22,8 @@ const BookCtrlExport = {
 			
 			// find the user
 			let thisUser = await Users.findOne({
-				_id: userid
-			}).then(() => {})
+				_id: mongoose.Types.ObjectId(userid)
+			})
 			.catch((err) => {
 				console.error(err);
 				return res.status(404).json({msg: "Unable to find user!"});
@@ -49,6 +47,8 @@ const BookCtrlExport = {
 				console.error(err);
 				return res.status(400).json({msg: "Unable to borrow book!"});
 			});
+			
+			return res.status(200).json({msg: "Successful"});
 		} catch (err) {
 			return res.status(500).json({msg: err.message});
 		}
@@ -66,9 +66,21 @@ const BookCtrlExport = {
 			
 			let newBookAuthorListInfo = {};
 			let newBookGenreListInfo = {};
+			let newBookListInfo = {
+				title: title,
+				owner: owner,
+				zipcode: zipcode,
+				condition: condition,
+				isbn10: isbn10,
+				isbn13: isbn13
+			}
+			
+			if (typeof owner == 'string') {
+				newBookListInfo.owner = mongoose.Types.ObjectId(owner);
+			}
 			
 			// create a book object that everything else will reference
-			let newBook = new BookInfo(req.body);
+			let newBook = new BookInfo(newBookListInfo);
 			let bookId = 0;
 			await newBook.save()
 			.then((doc) => { bookId = doc._id; })
@@ -95,7 +107,7 @@ const BookCtrlExport = {
 			// put genres
 			newBookGenreListInfo = {
 				bookid: bookId,
-				genres: bookInfo['genres']
+				genres: req.body['genres']
 			};
 			let newBookGenreList = new BookGenreListInfo(newBookGenreListInfo);
 			await newBookGenreList.save()
@@ -104,6 +116,8 @@ const BookCtrlExport = {
 				console.error(err);
 				return res.status(400).json({msg: "Unable to list book!"});
 			});
+			
+			return res.status(200).json({msg: "Successful"});
 		} catch (err) {
 			return res.status(500).json({msg: err.message});
 		}
@@ -121,13 +135,13 @@ const BookCtrlExport = {
 			let thisBook = await BookInfo.findOne({
 				$and: [
 					{
-						_id: bookid
+						_id: mongoose.Types.ObjectId(bookid)
 					},
 					{
-						borrower: userid
+						borrower: mongoose.Types.ObjectId(userid)
 					}
 				]
-			}).then(() => {})
+			})
 			.catch((err) => {
 				console.error(err);
 				return res.status(404).json({msg: "Unable to find book!"});
@@ -136,7 +150,7 @@ const BookCtrlExport = {
 			// find if the user exists
 			let thisUser = await Users.findOne({
 				_id: userid
-			}).then(() => {})
+			})
 			.catch((err) => {
 				console.error(err);
 				return res.status(404).json({msg: "Unable to find user!"});
@@ -159,52 +173,81 @@ const BookCtrlExport = {
 			} else {
 				return res.status(400).json({msg: "Unable to return book!"});
 			}
+			return res.status(200).json({msg: "Successful"});
 		} catch (err) {
 			return res.status(500).json({msg: err.message});
 		}
 	},
 	searchBooks: async (req, res) => {
+		let results = {};
 		try {
 			const { mode, query } = req.body;
 			
-			if (mode.equals("author")) {
+			if (mode==="author") {
 				// search by author
 				if (typeof query !== 'string') {
 					return res.status(400).json({msg: "Wrong search type!"});
 				}
-				results = await BookAuthorListInfo.find({
-					genres: {
+				let tempDoc = {};
+				await BookAuthorListInfo.find({
+					authors: {
 						$in: query
 					}
-				}).then(() => {})
+				})
+				.then((doc) => {
+					tempDoc = doc;
+				})
 				.catch((err) => {
 					console.error(err);
 					return res.status(400).json({msg: "Unable to find book!"});
 				});
-			} else if (mode.equals("genre") || mode.equals("category") || mode.equals("subject")) {
+				for (var i = 0; i < tempDoc.length; i++) {
+					results = [];
+					results[i] = await BookInfo.findById(tempDoc[i].bookid)
+					.catch((err) => {
+						console.error(err);
+						return res.status(400).json({msg: "Unable to find book!"});
+					});
+				}
+			} else if (mode==="genres" || mode==="categories" || mode==="subjects") {
 				// search by genre
 				if (!Array.isArray(query)) {
 					return res.status(400).json({msg: "Wrong search type!"});
 				}
-				results = await BookGenreListInfo.find({
-					authors: {
-						$in: genreArray
+				let tempDoc = {};
+				await BookGenreListInfo.find({
+					genres: {
+						$in: query
 					}
-				}).then(() => {})
+				})
+				.then((doc) => {
+					tempDoc = doc;
+				})
 				.catch((err) => {
 					console.error(err);
 					return res.status(400).json({msg: "Unable to find book!"});
 				});
+				for (var i = 0; i < tempDoc.length; i++) {
+					results = [];
+					results[i] = await BookInfo.findById(tempDoc[i].bookid)
+					.catch((err) => {
+						console.error(err);
+						return res.status(400).json({msg: "Unable to find book!"});
+					});
+				}
 			} else {
 				// search by title
 				if (typeof query !== 'string') {
 					return res.status(400).json({msg: "Wrong search type!"});
 				}
-				results = await BookInfo.find({
+				await BookInfo.find({
 					$text: {
-						$search: queryString
+						$search: query
 					}
-				}).then(() => {})
+				})
+				.then((doc) => {
+					results = doc;
+				})
 				.catch((err) => {
 					console.error(err);
 					return res.status(400).json({msg: "Unable to find book!"});
@@ -213,45 +256,59 @@ const BookCtrlExport = {
 		} catch (err) {
 			return res.status(500).json({msg: err.message});
 		}
+		return res.status(200).json(results);
 	},
 	updateBook: async (req, res) => {
 		try {
-			const { bookid, title, isbn10, isbn13, zipcode, authors, genres, condition } = req.body;
+			const { bookid, title, owner, isbn10, isbn13, zipcode, authors, genres, condition } = req.body;
 			// check if the fields are right
-			if (!title || !bookid || !zipcode || !genres || !condition) {
-				return res.status(400).json({msg: "Book is missing required information!"});
+			if (!owner || !bookid) {
+				return res.status(400).json({msg: "Owner or book id not provided!"});
 			}
 			
 			// TO DO: VALIDATE REQUEST BODY
 			
-			let newBookInfo = {
-				title: title,
-				isbn10: isbn10,
-				isbn13: isbn13,
-				zipcode: zipcode,
-				condition: condition
-			};
+			let newBookId = 0;
+			if (typeof bookid == 'string') {
+				newBookId = mongoose.Types.ObjectId(bookid);
+			}
 			let newBookAuthorListInfo = {};
 			let newBookGenreListInfo = {};
 			
-			let bookResult = await BookInfo.findByIdAndUpdate(bookId, newBookInfo)
+			let bookResult = await BookInfo.findById(newBookId)
+			.catch((err) => {
+				return res.status(400).json({msg: "Unable to find book!"});
+			});
+			
+			let thisOwner = mongoose.Types.ObjectId(owner)
+			if (!bookResult.owner.equals(thisOwner)) {
+				return res.status(400).json({msg: "Wrong owner!"});
+			}
+			
+			if (title) bookResult.title = title;
+			if (zipcode) bookResult.zipcode = zipcode;
+			if (condition) bookResult.condition = condition;
+			if (isbn10) bookResult.isbn10 = isbn10;
+			if (isbn13) bookResult.isbn13 = isbn13;
+			
+			await bookResult.save()
 			.then(() => {})
 			.catch((err) => {
 				console.error(err);
-				return res.status(400).json({msg: "Unable to find book!"});
+				return res.status(400).json({msg: "Unable to save book!"});
 			});
 			
 			if (!bookResult) {
 				return res.status(404).json({msg: "Book does not exist!"});
 			}
 			
-			if (Array.isArray(authors)) {
+			if (authors && Array.isArray(authors)) {
 				newBookAuthorListInfo = {
-					bookid: bookid,
+					bookid: newBookId,
 					authors: authors
 				}
 				let bookAuthorResult = await BookAuthorListInfo.findOneAndUpdate(
-					{ bookid: bookid }, newBookAuthorListInfo
+					{ bookid: newBookId }, newBookAuthorListInfo
 				);
 				if (!bookAuthorResult) {
 					// create a new author object
@@ -263,8 +320,6 @@ const BookCtrlExport = {
 						return res.status(400).json({msg: "Unable to create author information!"});
 					});
 				}
-			} else {
-				return res.status(400).json({msg: "Invalid author information!"});
 			}
 			
 			if (genres && Array.isArray(genres)) {
@@ -280,6 +335,8 @@ const BookCtrlExport = {
 					return res.status(400).json({msg: "Unable to update genre information!"});
 				});
 			}
+			
+			return res.status(200).json({msg: "Successful"});
 		} catch (err) {
 			return res.status(500).json({msg: err.message});
 		}
