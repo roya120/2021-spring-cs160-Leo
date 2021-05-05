@@ -76,7 +76,20 @@ const BookCtrlExport = {
 			}
 			
 			if (typeof owner == 'string') {
-				newBookListInfo.owner = mongoose.Types.ObjectId(owner);
+				// convert email to objectid
+				//newBookListInfo.owner = mongoose.Types.ObjectId(owner);
+				
+				let newOwner = 0;
+				let getUserFromEmail = await Users.findOne({
+					email: owner
+				})
+				.then((doc) => { 
+					 newBookListInfo.owner = doc._id;
+				})
+				.catch((err) => {
+					console.error(err);
+					return res.status(400).json({msg: "Unable to find user by email!"});
+				})
 			}
 			
 			// create a book object that everything else will reference
