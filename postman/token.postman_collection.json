@@ -1,0 +1,29 @@
+{
+	"info": {
+		"_postman_id": "10415110-a4d3-478f-8983-2e491699f561",
+		"name": "token",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:5000/user/refresh_token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/user/refresh_token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"user",
+						"refresh_token"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
