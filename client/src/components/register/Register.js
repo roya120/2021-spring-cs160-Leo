@@ -53,7 +53,7 @@ function Register() {
                 return setUser({...user, err: "Please fill in all fields.", success: ''})
 
         if(!isEmail(email))
-                return setUser({...user, err: "Invalid emails.", success: ''})
+                return setUser({...user, err: "Invalid email.", success: ''})
     
         if(isLength(password))
                 return setUser({...user, err: "Password must be at least 6 characters.", success: ''})

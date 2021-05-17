@@ -7,7 +7,7 @@ import kids from '../images/kids.png'
 import young from '../images/young.png'
 import history from '../images/history.png'
 import textbook from '../images/textbook.png'
-import './loggedBooklist.css'
+
 
 function loggedBooklist() {
     const handleLogout = async () => {
@@ -30,10 +30,15 @@ function loggedBooklist() {
       <a href="/loggedVolunteer">Volunteer</a>
       <a class= "LogoutLeft" href="/" onClick={handleLogout} >LogOut</a>
         </div>
-            <form id = "searchForm">
-                    <input type = "search " id = "query" placeholder = "Search..."/>
-                        <button > Search</button>
-                 </form>
+        <div class="search-container" >
+            <form>
+            <input type="text" placeholder="Find your book" name="search"/>
+            <button type ="submit">Search</button>
+
+            </form>
+
+        </div>
+           
             
         <div className="genreList">
         

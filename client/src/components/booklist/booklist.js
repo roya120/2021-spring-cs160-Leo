@@ -1,4 +1,6 @@
-import React from "react";
+import React, {useState} from 'react'
+import axios from 'axios'
+import {showErrMsg, showSuccessMsg} from '../notifications/Notification'
 import Genre from '../Genre/Genre'
 import fiction from '../images/finction.png'
 import nonfiction from '../images/nonfiction.png'
@@ -7,8 +9,52 @@ import young from '../images/young.png'
 import history from '../images/history.png'
 import textbook from '../images/textbook.png'
 
+
+
+const initialState = {
+    searchterm:'',
+    err: '',
+    success: ''
+}
+
+
+
 function BookList() {
-    //render(){
+
+
+    const [search, setSearch] = useState(initialState)
+
+    const {
+        searchterm, err, success} = search
+
+    const handleChangeInput = e => {
+            const {name, value} = e.target
+            setSearch({...search, [name]:value, err: '', success: ''})
+           
+        }
+    const handleSubmit = async e => {
+            e.preventDefault()
+            
+            try{
+                const res = await axios.get('http://localhost:5000/book/search', {
+                    params: {
+                        searchterm:search.searchterm
+                      }
+               
+                })
+                
+    
+                setSearch({...search, err: '', success: res.data.msg})
+               alert("Title: "  + res.data[0].title + "\n" +  "Condition: "+ res.data[0].condition + "\n" )
+    
+            }
+            catch(err){
+              err.response.data.msg && 
+              setSearch({...search, err: err.response.data.msg, success: ''})
+    
+            }
+        }
+
     return (
         <div>
             <div class = "navigationBar">
@@ -18,10 +64,15 @@ function BookList() {
         <a href='/contact'>Contact Us</a>
         <a href="/about">About</a>
         </div>
-            <form id = "searchForm">
-                    <input type = "search " id = "query" placeholder = "Search..."/>
-                        <button > Search</button>
-                 </form>
+            <div>
+            {err && showErrMsg(err)}
+            {success && showSuccessMsg(success)}
+                <form onSubmit={handleSubmit}>
+                    <input name="searchterm" type="text" value={searchterm} onChange={handleChangeInput}/> 
+                    <input type="submit" value="Submit"/>
+                </form>
+            </div>
+            
             
         <div className="genreList">
         

@@ -1,15 +1,46 @@
-import React, {useState} from 'react'
+
+import React, {useState, useEffect} from 'react'
 import { Link } from 'react-router-dom'
+import {useSelector, useDispatch} from 'react-redux'
 import axios from 'axios'
 import './loggedIn.css'
 import history from '../images/history.png'
 import catalog from '../images/catalog.png'
 import bookclub from '../images/book-club.png'
+import {showErrMsg, showSuccessMsg} from '../notifications/Notification'
+import {fetchAllUsers, dispatchGetAllUsers} from '../../redux/actions/usersAction'
 
-
+const initialState = {
+  firstname: '',
+  lastname: '',
+  password:'',
+  err: '',
+  success: ''
+}
 
 
 function LoggedIn() {
+
+  const auth = useSelector(state => state.auth)
+    const token = useSelector(state => state.token)
+
+    const users = useSelector(state => state.users)
+
+    const {user, isAdmin} = auth
+    const [data, setData] = useState(initialState)
+    const {firstname, lastname, password, err, success} = data
+    const dispatch = useDispatch()
+    const [callback, setCallback] = useState(false)
+
+    useEffect(() => {
+      if(isAdmin){
+          fetchAllUsers(token).then(res =>{
+              dispatch(dispatchGetAllUsers(res))
+          })
+      }
+  },[token, isAdmin, dispatch, callback])
+
+
   const handleLogout = async () => {
     try {
         await axios.get('http://localhost:5000//user/logout')
@@ -32,7 +63,7 @@ function LoggedIn() {
     
   <div class="top-container20">
 
-    <h1>Welcome user to bookey.</h1>
+    <h1>Welcome {user.firstname} to bookey.</h1>
     <p> Here you can borrow and lend your books! </p>
 
      </div>
